@@ -1,9 +1,3 @@
-function GetPrint()
-{
-    /*For Print*/
-    window.print();
-}
-
 function BtnAdd()
 {
     /*Add Button*/
@@ -45,7 +39,7 @@ function Calc(v)
 function GetTotal()
 {
     /*Footer Calculation*/   
-
+    var taxPercentage = 8.25;
     var sum=0;
     var amts =  document.getElementsByName("amt");
 
@@ -57,8 +51,12 @@ function GetTotal()
 
     document.getElementById("FTotal").value = sum;
 
-    var gst =  document.getElementById("FGST").value;
+    var gst = sum * (taxPercentage / 100);
+    gst = gst.toFixed(2); // Redondea gst a dos decimales
+    gst = parseFloat(gst);
+    document.getElementById("FGST").value = gst;
+    
     var net = +(sum) + +(gst);
     document.getElementById("FNet").value = net;
-
+    
 }
